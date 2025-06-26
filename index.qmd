@@ -1,0 +1,53 @@
+---
+title: "Billboard Graphic"
+author: "Ayush Chandra"
+execute:
+  echo: false
+---
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(tidyr)
+```
+
+```{r}
+#| message: false
+#| warning: false
+# Get the billboard data
+data("billboard", package = "tidyr")
+
+# Reshape the data from wide to long format
+billboard_long <- billboard %>%
+  pivot_longer(cols = starts_with("wk"),
+               names_to = "week",
+               names_prefix = "wk",
+               values_to = "rank",
+               values_drop_na = TRUE) %>%
+  mutate(week = as.integer(week))
+
+# Filter the top 5 songs for clearer visualization
+top_songs <- billboard_long %>%
+  group_by(track) %>%
+  filter(min(rank) <= 10) %>%
+  ungroup() %>%
+  distinct(track) %>%
+  slice_head(n = 5)
+
+filtered_data <- billboard_long %>%
+  filter(track %in% top_songs$track)
+
+# Create the plot
+ggplot(filtered_data, aes(x = week, y = rank, color = track)) +
+  geom_line(size = 1.2) +
+  scale_y_reverse(breaks = seq(1, 100, by = 10)) +  # Rank 1 at the top
+  labs(title = "Top 5 Billboard Hot 100 Tracks Over Time",
+       subtitle = "Tracking chart position by week",
+       x = "Week on Chart",
+       y = "Chart Rank",
+       color = "Track") +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "bottom",
+        plot.title = element_text(face = "bold"))
+```
