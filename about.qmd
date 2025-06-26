@@ -2,4 +2,8 @@
 title: "About"
 ---
 
-About this site
+## About Me
+
+My name is **Ayush Chandra**, and I am in 9th grade at *Sharon High School* in Sharon, MA.
+
+[Kane's Free Data Science Bootcamp](https://bootcamp.davidkane.info)
