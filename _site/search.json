@@ -12,5 +12,12 @@
     "title": "About",
     "section": "",
     "text": "My name is Ayush Chandra, and I am in 9th grade at Sharon High School in Sharon, MA.\nKane’s Free Data Science Bootcamp"
+  },
+  {
+    "objectID": "sources.html",
+    "href": "sources.html",
+    "title": "Sources",
+    "section": "",
+    "text": "An overview of sources used in my project.\nThese are my sources. Here are some challenges. Quarto websites are awesome."
   }
 ]
